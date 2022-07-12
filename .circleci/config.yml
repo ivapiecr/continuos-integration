@@ -18,11 +18,15 @@ jobs:
 
   # 👇 Adds Chromatic as a job
   chromatic-deployment: 
-    # Other configuration
+    docker:
+      - image: circleci/node:12
+    working_directory: ~/repo
     steps:
-      # Other job steps
-
-      # 👇 Option to skip the last build on target branch
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: yarn install
+        # 👇 Runs the Chromatic CLI
       - run: yarn chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}
-
-# Workflows here
