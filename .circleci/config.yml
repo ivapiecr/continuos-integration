@@ -13,11 +13,16 @@ orbs:
   # See here https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project
   heroku: circleci/heroku@1.2
 
-# 👇 Checks if the current branch is not the main and runs Chromatic
-if [ "${CIRCLE_BRANCH}" != "main" ];
-then
-  yarn chromatic --project-token=CHROMATIC_PROJECT_TOKEN
-else
-  # 👇 Checks if the current branch is main and runs Chromatic with the flag to accept all changes
-  yarn chromatic --project-token=CHROMATIC_PROJECT_TOKEN --auto-accept-changes
-fi
+jobs:
+  # Other jobs
+
+  # 👇 Adds Chromatic as a job
+  chromatic-deployment: 
+    # Other configuration
+    steps:
+      # Other job steps
+
+      # 👇 Option to skip the last build on target branch
+      - run: yarn chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}
+
+# Workflows here
