@@ -11,7 +11,7 @@ orbs:
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/heroku
   # NOTE: Environment variables containing the necessary secrets can be setup in the CircleCI UI
   # See here https://circleci.com/docs/2.0/env-vars/#setting-an-environment-variable-in-a-project
-  heroku: circleci/heroku@1.2
+  heroku: circleci/heroku@1.2.6
 
 jobs:
   # Other jobs
@@ -29,11 +29,13 @@ jobs:
             - v1-dependencies-
       - run: yarn install
         # 👇 Runs the Chromatic CLI
-      - run: yarn chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}
-
+      - run: yarn chromatic --project-token=${CHROMATIC_PROJECT_TOKEN}  
 
 workflows:
   # 👇 Adds Chromatic to the workflow
   chromatic-deploy:
     jobs:
       - chromatic-deployment # 👈 Runs the Chromatic job implemented above
+  heroku_deploy:
+    jobs:
+      - heroku/deploy-via-git
