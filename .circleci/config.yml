@@ -36,6 +36,3 @@ workflows:
   chromatic-deploy:
     jobs:
       - chromatic-deployment # 👈 Runs the Chromatic job implemented above
-  heroku_deploy:
-    jobs:
-      - heroku/deploy-via-git
