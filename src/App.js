@@ -9,7 +9,7 @@ const App = () => {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload IIvanchis.
+          Edit <code>src/App.js</code> and save to reload NO Deployvanchis.
         </p>
         <a
           className="App-link"
